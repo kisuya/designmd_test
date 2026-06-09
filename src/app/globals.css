@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens — derived 1:1 from /design.md (Airbnb Design System).
+ * design.md is the SINGLE source of truth for this project.
+ *
+ * Note: design.md's spacing scale (2/4/8/12/16/24/32/40/48/64/80px) lines up
+ * exactly with Tailwind's default 4px-based scale, so standard spacing
+ * utilities (p-4 = 16px, gap-6 = 24px, ...) already honor design.md §5.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Core foundation */
+  --palette-white: #ffffff;
+  --palette-faint: #f7f7f7;
+  --palette-capiz: #f7f6f2;
+  --palette-hapuna: #f5f1ea;
+  --palette-hof: #222222;
+
+  /* Neutral scale */
+  --palette-grey0: #ffffff;
+  --palette-grey100: #f7f7f7;
+  --palette-grey200: #f2f2f2;
+  --palette-grey300: #ebebeb;
+  --palette-grey400: #dddddd;
+  --palette-grey500: #c1c1c1;
+  --palette-grey600: #8c8c8c;
+  --palette-grey700: #6c6c6c;
+  --palette-grey800: #515151;
+  --palette-grey900: #3f3f3f;
+  --palette-grey1000: #222222;
+  --palette-grey1100: #000000;
+
+  /* Brand & product accents */
+  --palette-rausch: #ff385c;
+  --palette-product-rausch: #e00b41;
+  --palette-rausch-start: #e61e4d;
+  --palette-rausch-mid: #e31c5f;
+  --palette-rausch-end: #d70466;
+  --palette-plus: #92174d;
+  --palette-luxe: #460479;
+
+  /* Semantic utility */
+  --palette-blue600: #318cf7;
+  --palette-ondo: #e07912;
+  --palette-spruce: #008a05;
+  --palette-arches: #c13515;
+
+  /* Text roles */
+  --palette-text-primary: #222222;
+  --palette-text-secondary: #6c6c6c;
+
+  /* Material / glass surfaces (design.md §2) */
+  --material-extra-thin: rgba(218, 218, 218, 0.4);
+  --material-thin: rgba(240, 240, 240, 0.5);
+  --material-regular: rgba(250, 250, 250, 0.72);
+  --material-thick: rgba(240, 240, 240, 0.86);
+  --material-extra-thick: rgba(255, 255, 255, 0.925);
+
+  /* The live rausch gradient (design.md header) */
+  --gradient-rausch: linear-gradient(
+    135deg,
+    var(--palette-rausch-start) 0%,
+    var(--palette-rausch-mid) 50%,
+    var(--palette-rausch-end) 100%
+  );
+
+  /* Elevation language (design.md §6) */
+  --elevation-high: 0 8px 28px rgba(0, 0, 0, 0.28);
+  --elevation-primary: 0 6px 20px rgba(0, 0, 0, 0.2);
+  --elevation-secondary: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --elevation-tertiary: 0 2px 4px rgba(0, 0, 0, 0.18);
+
+  --font-sans: var(--font-cereal), "Airbnb Cereal VF", "Circular",
+    -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", Arial,
+    sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Register design tokens as Tailwind utilities (bg-rausch, text-hof, rounded-pill, ...) */
+@theme {
+  --color-white: #ffffff;
+  --color-faint: #f7f7f7;
+  --color-capiz: #f7f6f2;
+  --color-hapuna: #f5f1ea;
+  --color-hof: #222222;
+
+  --color-grey-100: #f7f7f7;
+  --color-grey-200: #f2f2f2;
+  --color-grey-300: #ebebeb;
+  --color-grey-400: #dddddd;
+  --color-grey-500: #c1c1c1;
+  --color-grey-600: #8c8c8c;
+  --color-grey-700: #6c6c6c;
+  --color-grey-800: #515151;
+  --color-grey-900: #3f3f3f;
+  --color-grey-1000: #222222;
+
+  --color-rausch: #ff385c;
+  --color-product-rausch: #e00b41;
+  --color-plus: #92174d;
+  --color-luxe: #460479;
+
+  --color-info: #318cf7;
+  --color-warning: #e07912;
+  --color-success: #008a05;
+  --color-danger: #c13515;
+
+  --color-text-primary: #222222;
+  --color-text-secondary: #6c6c6c;
+
+  /* Radii — design.md §1/§4 (8 / 12 / 16 / 24px, pills 999px) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
+
+  --font-sans: var(--font-sans);
+
+  /* Breakpoints — design.md §8 */
+  --breakpoint-md: 744px;
+  --breakpoint-lg: 1128px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--palette-white);
+  color: var(--palette-text-primary);
+  font-family: var(--font-sans);
+  /* Body: 16px / 400 / 1.25 (design.md §3) */
+  font-size: 16px;
+  line-height: 1.25;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* design.md primary-button focus ring, reusable on floating shells */
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--palette-white), 0 0 0 4px var(--palette-hof);
 }
