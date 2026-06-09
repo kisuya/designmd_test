@@ -35,9 +35,9 @@ export function Hero() {
           </span>
 
           <h1 className="text-[44px] font-semibold leading-[1.05] tracking-[-0.01em] text-grey-1000 sm:text-[60px] lg:text-[64px]">
-            벽 한 면을
+            Turn one wall
             <br />
-            갤러리로 바꾸세요
+            into a gallery
           </h1>
 
           <p className="max-w-[44ch] text-[18px] leading-[1.4] text-text-secondary">
