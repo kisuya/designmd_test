@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { CategoryRail } from "@/components/CategoryRail";
 import { ArtworkGrid } from "@/components/ArtworkGrid";
 import { HowItWorks } from "@/components/HowItWorks";
+import { ConsultationSection } from "@/components/ConsultationSection";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <CategoryRail />
         <ArtworkGrid />
         <HowItWorks />
+        <ConsultationSection />
       </main>
       <SiteFooter />
     </>
